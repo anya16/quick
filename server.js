@@ -28,7 +28,9 @@ app.use(hotMiddleware(compiler, {
 
     }
 }));
+
 app.use(express.static(publicPath));
+
 app.listen(DEV_MODE.port, (err)=> {
     if (err) {
         console.log(err);
