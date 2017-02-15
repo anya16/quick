@@ -1,4 +1,5 @@
+require('./index.css');
 var controllerDetail = function () {
-    console.log('detail');
+   console.log('detail');
 };
 export {controllerDetail};
