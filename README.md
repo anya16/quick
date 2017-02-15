@@ -1,1 +1,1 @@
-# html5 scaffold
+# HTML5 scaffold
