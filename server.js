@@ -35,25 +35,34 @@ if (_ENV === 'dev') {
     var url = 'http://localhost:' + DEV_MODE.port;
 
     var compiler = webpack(baseConfig);
-
-    app.use(devMiddleware(compiler, {
+    var devMiddleware = require('webpack-dev-middleware')(compiler, {
         publicPath: DEV_MODE.assetsPublicPath,
         noInfo: false,
         stats: {
             colors: true
         },
-        quiet: false
-    }));
+        quiet: true
+    });
+    var hotMiddleware = require('webpack-hot-middleware')(compiler, {
+        log: () => {}
+    });
 
-    app.use(hotMiddleware(compiler, {
-        log: ()=> {
+    require('./plugins/reload')(compiler, hotMiddleware);
+    // compiler.plugin('compilation', function(compilation) {
+    //     compilation.plugin('html-webpack-plugin-after-emit', function(data, cb) {
+    //         hotMiddleware.publish({ action: 'reload' });
+    //         cb();
+    //         console.log('get');
+    //     });
+    // });
 
-        }
-    }));
+    app.use(devMiddleware);
+
+    app.use(hotMiddleware);
 
     app.use(express.static(publicPath));
 
-    app.listen(DEV_MODE.port, (err)=> {
+    app.listen(DEV_MODE.port, (err) => {
         if (err) {
             console.log(err);
             return false;
@@ -65,17 +74,17 @@ if (_ENV === 'dev') {
     });
 } else if (_ENV === 'build') {
     shell.rm('-rf', path.join(publicPath, 'dist'));
-    webpack(buildConfig, (err, stats)=> {
+    webpack(buildConfig, (err, stats) => {
         if (err) {
             throw err;
         }
         process.stdout.write(stats.toString({
-                colors: true,
-                modules: false,
-                children: false,
-                chunks: false,
-                chunkModules: false
-            }) + '\n\n');
+            colors: true,
+            modules: false,
+            children: false,
+            chunks: false,
+            chunkModules: false
+        }) + '\n\n');
 
         let msg = 'Tip: built files are meant to be served over an HTTP server.\n' +
             'Opening index.html over file:// won\'t work.\n';
