@@ -1,8 +1,4 @@
-var express = require('express');
+var shell = require('shelljs');
 var path = require('path');
-var app = express();
-var staticPath = path.posix.join('./');
-app.use(staticPath,express.static(staticPath));
-app.listen(8001, (err)=> {
-    console.log(err);
-});
+var env = process.env.NODE_ENV = require('./build').NODE_ENV;
+shell.rm('-rf', path.join(__dirname,'./dist'));
