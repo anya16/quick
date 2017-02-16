@@ -14,6 +14,7 @@ module.exports = {
         cssSourceMap: false
     },
     build: {
-
+        assetsSubDirectory: path.resolve('/static'),
+        assetsPublicPath: '/'
     }
 };
