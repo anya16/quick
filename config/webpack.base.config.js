@@ -2,22 +2,23 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlwebpackPlugin = require('html-webpack-plugin');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
+const build = require('../build');
 module.exports = {
     entry: {
         bundle: path.resolve(__dirname, '../src/app.js'),
         vendor: ['jquery', 'underscore']
     },
     output: {
-        path: path.resolve(__dirname, '../public'),
-        filename: '[name].[chunkhash].js',
-        publicPath: '/'
+        path: path.resolve(__dirname, '../dist'),
+        filename: './static/' + '[name].[chunkhash].js',
+        publicPath: build.NODE_ENV === 'dev' ? '/' : ''
     },
     resolve: {},
     module: {
         rules: [{
             test: /\.js$/,
             loader: 'babel-loader',
-            query: { compact: false }
+            query: {compact: false}
         }, {
             test: /\.css$/,
             use: ExtractTextWebpackPlugin.extract({
@@ -27,8 +28,8 @@ module.exports = {
         }]
     },
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin({ names: ['vendor', 'runtime'] }),
-        new ExtractTextWebpackPlugin({ filename: 'style.css' }),
+        new webpack.optimize.CommonsChunkPlugin({names: ['vendor', 'runtime']}),
+        new ExtractTextWebpackPlugin({filename: 'style.css'}),
         new HtmlwebpackPlugin({
             filename: 'index.html',
             template: 'index.html',
