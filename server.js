@@ -27,8 +27,10 @@ var app = express();
 
 /**
  * 当前模式选择
+ * dev:调试 build:编译
  * @type {any}
  */
+
 if (_ENV === 'dev') {
     var url = 'http://localhost:' + DEV_MODE.port;
 
@@ -61,10 +63,8 @@ if (_ENV === 'dev') {
         }
         console.log('Listening at ' + url);
     });
-}
-
-if (_ENV === 'build') {
-    shell.rm('-rf', publicPath + '/dist');
+} else if (_ENV === 'build') {
+    shell.rm('-rf', path.join(publicPath, 'dist'));
     webpack(buildConfig, (err, stats)=> {
         if (err) {
             throw err;
@@ -78,10 +78,7 @@ if (_ENV === 'build') {
             }) + '\n\n');
 
         let msg = 'Tip: built files are meant to be served over an HTTP server.\n' +
-                  'Opening index.html over file:// won\'t work.\n';
+            'Opening index.html over file:// won\'t work.\n';
         console.log(msg);
     });
-    /**
-     * do...
-     */
 }
