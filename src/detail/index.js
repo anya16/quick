@@ -1,5 +1,5 @@
 require('./index.css');
 var controllerDetail = function () {
-   console.log('detail');
+   console.log('de3');
 };
 export {controllerDetail};
