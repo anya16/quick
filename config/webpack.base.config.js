@@ -9,7 +9,7 @@ const hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true&noInfo=tr
 module.exports = {
     entry: {
         bundle: [path.resolve(__dirname, '../src/app.js'), hotMiddlewareScript],
-        vendor: ['jquery', 'underscore']
+        vendor: ['jquery', 'underscore','director']
     },
     output: {
         path: path.resolve(__dirname, '../dist'),
