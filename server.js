@@ -2,6 +2,7 @@
  * 基础模块
  */
 var express = require('express');
+var http = require('http');
 var webpack = require('webpack');
 var open = require('opn');
 var path = require('path');
@@ -19,6 +20,7 @@ var DEV_MODE = require('./config/config.js')[_ENV];
  */
 var baseConfig = require('./config/webpack.base.config');
 var buildConfig = require('./config/webpack.build.config');
+var devConfig = require('./config/webpack.dev.config');
 var devMiddleware = require('webpack-dev-middleware');
 var hotMiddleware = require('webpack-hot-middleware');
 var publicPath = path.join(__dirname);
@@ -34,7 +36,7 @@ var app = express();
 if (_ENV === 'dev') {
     var url = 'http://localhost:' + DEV_MODE.port;
 
-    var compiler = webpack(baseConfig);
+    var compiler = webpack(devConfig);
     var devMiddleware = require('webpack-dev-middleware')(compiler, {
         publicPath: DEV_MODE.assetsPublicPath,
         noInfo: false,
@@ -43,18 +45,12 @@ if (_ENV === 'dev') {
         },
         quiet: true
     });
+
     var hotMiddleware = require('webpack-hot-middleware')(compiler, {
         log: () => {}
     });
 
-    require('./plugins/reload')(compiler, hotMiddleware);
-    // compiler.plugin('compilation', function(compilation) {
-    //     compilation.plugin('html-webpack-plugin-after-emit', function(data, cb) {
-    //         hotMiddleware.publish({ action: 'reload' });
-    //         cb();
-    //         console.log('get');
-    //     });
-    // });
+    //require('eventsource-polyfill');
 
     app.use(devMiddleware);
 
@@ -62,7 +58,9 @@ if (_ENV === 'dev') {
 
     app.use(express.static(publicPath));
 
-    app.listen(DEV_MODE.port, (err) => {
+    var server = http.createServer(app);
+
+    server.listen(DEV_MODE.port, (err) => {
         if (err) {
             console.log(err);
             return false;

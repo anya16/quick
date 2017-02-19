@@ -1,1 +1,2 @@
-var webpack = require('webpack');
+var package = require('package.json');
+console.log(package);

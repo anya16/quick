@@ -5,10 +5,11 @@ const hotMiddleware = require('webpack-hot-middleware');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 const build = require('../build');
 const hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true&noInfo=true';
+
 module.exports = {
     entry: {
         bundle: [path.resolve(__dirname, '../src/app.js'), hotMiddlewareScript],
-        vendor: ['jquery', 'underscore', hotMiddlewareScript]
+        vendor: ['jquery', 'underscore']
     },
     output: {
         path: path.resolve(__dirname, '../dist'),
@@ -20,6 +21,7 @@ module.exports = {
         rules: [{
             test: /\.js$/,
             loader: 'babel-loader',
+            exclude: /node_modules/,
             query: { compact: false }
         }, {
             test: /\.css$/,
@@ -27,7 +29,24 @@ module.exports = {
                 fallback: 'style-loader',
                 use: 'css-loader'
             })
-        }]
+        }, {
+            test: /\.scss$/,
+            use: ExtractTextWebpackPlugin.extract({
+                fallback: 'style-loader',
+                loader: [{ 
+                    loader: 'css-loader' 
+                }, { 
+                    loader: 'sass-loader' 
+                }]
+            })
+        }, {
+            test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+            loader: 'url-loader',
+            query: {
+                limit: 10000,
+                name: 'images/[name].[hash].[ext]'
+            }
+        }, ]
     },
     plugins: [
         new webpack.optimize.CommonsChunkPlugin({ names: ['vendor', 'runtime'] }),
@@ -37,7 +56,11 @@ module.exports = {
             filename: 'index.html',
             template: 'index.html',
             inject: true,
-            hash: true
+            hash: true,
+            minify: {
+                removeComments: true,
+                collapseWhitespace: true
+            }
         })
     ]
 };
