@@ -1,5 +1,5 @@
-require('./index.css');
+require('./index.scss');
 var controllerDetail = function () {
-   console.log('de3');
+   console.log('de366');
 };
 export {controllerDetail};
