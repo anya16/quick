@@ -1,13 +1,13 @@
 class BaseModel {
     constructor(param) {
-    	this.model = {};
+        this.model = {};
         this.init(param);
-    }
-    toString() {
-        return this.model;
     }
     init(param) {
         this.model = param;
+    }
+    toString() {
+        return this.model;
     }
 }
 export { BaseModel };
