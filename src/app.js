@@ -1,5 +1,6 @@
 import { controllerDetail } from './detail';
 import $ from 'jquery';
+import _ from 'undescore';
 import D from 'director/build/director';
 var Router = D.Router;
 $(function() {
