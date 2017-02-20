@@ -9,7 +9,7 @@ const hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true&noInfo=tr
 module.exports = {
     entry: {
         bundle: [path.resolve(__dirname, '../src/app.js'), hotMiddlewareScript],
-        vendor: ['jquery', 'underscore','director']
+        vendor: ['jquery', 'underscore', 'director']
     },
     output: {
         path: path.resolve(__dirname, '../dist'),
@@ -33,10 +33,10 @@ module.exports = {
             test: /\.scss$/,
             use: ExtractTextWebpackPlugin.extract({
                 fallback: 'style-loader',
-                loader: [{ 
-                    loader: 'css-loader' 
-                }, { 
-                    loader: 'sass-loader' 
+                loader: [{
+                    loader: 'css-loader'
+                }, {
+                    loader: 'sass-loader'
                 }]
             })
         }, {
@@ -46,7 +46,10 @@ module.exports = {
                 limit: 10000,
                 name: 'images/[name].[hash].[ext]'
             }
-        }, ]
+        }, {
+            test: /\.html$/,
+            loader: 'html-loader'
+        }]
     },
     plugins: [
         new webpack.optimize.CommonsChunkPlugin({ names: ['vendor', 'runtime'] }),
