@@ -3,6 +3,7 @@ import $ from 'jquery';
 class BaseView {
     constructor(param) {
         this.$app = $('#app');
+        this.id = '#detail';
         this.$ele = $('<div id="detail" class="view">');
         this.model = param.model;
         this.template = param.template;
@@ -10,11 +11,13 @@ class BaseView {
         this.render();
     }
     render() {
+        let $ele =  this.$ele;
+        let id = this.id;
         let tpl = this.template;
         let model = this.model;
         let html = _.template(tpl)(model);
-        this.$ele.html(html);
-        this.$app.append(this.$ele);
+        $ele.html(html);
+        this.$app.remove(id).append($ele);
     }
     filter() {
         let _tpl = this.template;

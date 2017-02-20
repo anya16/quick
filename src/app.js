@@ -5,12 +5,15 @@ var Router = D.Router;
 $(function() {
     Router({
         '/': () => {
+        	$('.view').hide();
             console.log('index');
         },
         '/detail': () => {
+        	$('.view').hide();
             let controllerDetail = new ControllerDetail();
         },
         '/list': () => {
+        	$('.view').hide();
             console.log('list');
         }
     }).init('/');
