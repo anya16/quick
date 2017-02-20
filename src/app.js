@@ -1,15 +1,17 @@
-import { controllerDetail } from './detail';
+import { ControllerDetail } from './detail';
 import $ from 'jquery';
-import _ from 'undescore';
 import D from 'director/build/director';
 var Router = D.Router;
 $(function() {
-    let routes = {
-        '/detail': controllerDetail,
+    Router({
+        '/': () => {
+            console.log('index');
+        },
+        '/detail': () => {
+            let controllerDetail = new ControllerDetail();
+        },
         '/list': () => {
             console.log('list');
         }
-    };
-    let router = Router(routes);
-    router.init();
+    }).init('/');
 });
