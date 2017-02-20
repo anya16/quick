@@ -18,11 +18,8 @@ var DEV_MODE = require('./config/config.js')[_ENV];
 /**
  * webpack基本配置
  */
-var baseConfig = require('./config/webpack.base.config');
 var buildConfig = require('./config/webpack.build.config');
 var devConfig = require('./config/webpack.dev.config');
-var devMiddleware = require('webpack-dev-middleware');
-var hotMiddleware = require('webpack-hot-middleware');
 var publicPath = path.join(__dirname);
 var autoOpenBrowser = !!DEV_MODE.autoOpenBrowser;
 var app = express();
