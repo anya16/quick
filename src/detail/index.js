@@ -1,5 +1,5 @@
 import { BaseModel } from '../model/baseModel';
-import { BaseView } from '../view/baseView';
+import { DetailView } from '../view/DetailView';
 import $ from 'jquery';
 require('./detail.scss');
 var tpl = require('./detail.html');
@@ -30,7 +30,7 @@ class ControllerDetail {
         let result = new BaseModel(detailModel).toString();
         param.template = tpl;
         param.model = result;
-        let baseView = new BaseView(param);
+        let detailView = new DetailView(param);
     }
     shut() {
         $('view').hide();
