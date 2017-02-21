@@ -3,12 +3,10 @@ import $ from 'jquery';
 class BaseView {
     constructor(param) {
         this.$app = $('#app');
-        this.id = '#detail';
-        this.$ele = $('<div id="detail" class="view">');
+        this.id = '#';
+        this.$ele = $('<div>');
         this.model = param.model;
         this.template = param.template;
-        this.filter();
-        this.render();
     }
     render() {
         let $ele =  this.$ele;
