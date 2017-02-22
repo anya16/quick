@@ -81,7 +81,7 @@ if (_ENV === 'dev') {
             chunkModules: false
         }) + '\n\n');
 
-        let msg = 'Tip: built files are meant to be served over an HTTP server.\n' +
+        let msg = 'Tip: now you can view your application by the following.\n' +
             'Opening index.html over file:// won\'t work.\n';
         console.log(msg);
     });
