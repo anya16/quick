@@ -20,9 +20,8 @@ module.exports = {
     module: {
         rules: [{
             test: /\.js$/,
-            loader: 'babel-loader',
-            exclude: /node_modules/,
-            query: { compact: false }
+            use: 'babel-loader',
+            exclude: /node_modules/
         }, {
             test: /\.css$/,
             use: ExtractTextWebpackPlugin.extract({
@@ -33,7 +32,7 @@ module.exports = {
             test: /\.scss$/,
             use: ExtractTextWebpackPlugin.extract({
                 fallback: 'style-loader',
-                loader: [{
+                use: [{
                     loader: 'css-loader'
                 }, {
                     loader: 'sass-loader'
@@ -41,14 +40,16 @@ module.exports = {
             })
         }, {
             test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-            loader: 'url-loader',
-            query: {
-                limit: 10000,
-                name: 'images/[name].[hash].[ext]'
+            use: {
+                loader: 'url-loader',
+                options: {
+                    limit: 10000,
+                    name: 'images/[name].[hash].[ext]'
+                }
             }
         }, {
             test: /\.html$/,
-            loader: 'html-loader'
+            use: 'html-loader'
         }]
     },
     plugins: [
