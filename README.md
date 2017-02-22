@@ -25,5 +25,5 @@ npm run build
 ### Just a flexible development for webapp
 - just use Js and Jquery achieved MVC without Angular,React or Vue.
 - support ES6/7 and can use ECMAScript of any version.
-- make a SPA with underscore and director
-- building with webpack and view with express
+- make a SPA with underscore and director.
+- building with webpack and view with express.
