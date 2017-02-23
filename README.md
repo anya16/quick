@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/Leotw/quick.svg?branch=master)](https://travis-ci.org/Leotw/quick)
 # Quick
-HTML5 scaffold for web
+[![Build Status](https://travis-ci.org/Leotw/quick.svg?branch=master)](https://travis-ci.org/Leotw/quick)
+>HTML5 scaffold for web
 ## Getting started
 
 ### clone
