@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/Leotw/quick.svg?branch=master)](https://travis-ci.org/Leotw/quick)
+[![node][node]][node-url]
 # Quick
 > HTML5 scaffold for web,no react,no angular,no vue.
 
