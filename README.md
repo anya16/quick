@@ -28,6 +28,30 @@ npm run build
 ## Usage
 ### Just a flexible development for webapp
 - just use Js and Jquery achieved MVC without Angular,React or Vue.
-- support ES6/7 and can use ECMAScript of any version.
+- support ES6 and other version ECMAScript.
 - make a SPA with underscore and director.
-- building with webpack and view with express.
+- building with webpack and service with express.
+
+## structure
+```shell
+    ├── dist/           # 打包编译后的目录
+    ├── build          # 获取linux指令
+    ├── config        # webpack配置
+    ├── public
+    └── src
+        ├── page/
+            ├── index.js
+            ├── page.html
+            └── page.scss
+        └── model/
+            ├── baseModel.js
+            └── pageModel.js
+        └── view/                            
+            ├── baseView.js
+            └── pageView.js
+        └── app.js
+        └── main.scss
+     └── index.html
+```
+
+
