@@ -51,7 +51,7 @@ npm run build
             └── pageView.js
         └── app.js
         └── main.scss
-     └── index.html
+     └── index.html     #入口页面
 ```
 
 
