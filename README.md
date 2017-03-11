@@ -156,6 +156,7 @@ export { PageController };
 ```
 ##### 模板文件 page.html
 > page.html并不是真正的html文件，而是[undescore](http://underscorejs.org/)的模板引擎所需要的基础文件，代码里含有`<%%>`等标记符可以进行一定的迭代运算
+
 ```bash
 <div class="page">
     <ul>
@@ -177,12 +178,14 @@ vi app.js
 ```
 引入jquery模块与director模块 
 > 项目的主要逻辑依赖[jquery](https://github.com/jquery/jquery)，路由管理依赖[director](https://github.com/flatiron/director)
+
 ```bash
 import $ from 'jquery';
 import D from 'director/build/director';
 ```
 拿到director的Router方法
 > director的引入需要引入到`director/build/director`，这是因为director的UMD规范没有完善而造成，在此不做详细解读
+
 ```bash
 var Router = D.Router;
 ```
