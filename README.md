@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Leotw/quick.svg?branch=master)](https://travis-ci.org/Leotw/quick)
+[![Build Status](https://travis-ci.org/Ironsub/quick.svg?branch=master)](https://travis-ci.org/Ironsub/quick)
 ![node](https://img.shields.io/badge/node-%3E%3D7.0.0-brightgreen.svg)
 [![GitHub issues](https://img.shields.io/github/issues/Leotw/quick.svg)](https://github.com/Leotw/quick/issues)
 [![GitHub forks](https://img.shields.io/github/forks/Leotw/quick.svg)](https://github.com/Leotw/quick/network)
