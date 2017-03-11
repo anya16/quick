@@ -101,6 +101,7 @@ vi index.js page.scss page.html
 ##### 控制器 indexjs
 引入相应的`PageModel`类与`PageView`类以及jquery
 > jquery是项目主要依赖的工具库，所以很多地方都需要引入
+
 ```bash
 import { PageModel } from '../model/pageModel';
 import { PageView } from '../view/pageView';
