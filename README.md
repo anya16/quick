@@ -45,7 +45,7 @@ npm run build
       * index,js ------ 控制器  
       * page.scss ------ 样式文件
       * page.html ------ 模板文件
-   * model/ ------ 模型文件 
+   * model/ ------ 模型目录 
       * baseModel.js ------ 模型基类
       * pageModel.js ------ 模型子类
    * view/ ------ 视图目录
@@ -109,11 +109,11 @@ import $ from 'jquery';
 ```
 引入相应的page.scss
 ```bash
-require('./detail.scss');
+require('./page.scss');
 ```
 引入相应的page.html，做模板渲染的基础文件
 ```bash
-var tpl = require('./detail.html');
+var tpl = require('./page.html');
 ```
 具体控制器`PageController`类的实现，将`PageModel`实例化后的输出结果在`PageView`的实例化中执行，进而渲染页面
 ```bash
@@ -208,6 +208,6 @@ $(function() {
 ## 关于
 Quick是一个轻量级的业务层次的MVC单页面应用框架，遵循ES6的模块规范(在浏览器端实质还是会解析成UMD规范)，不借助任何MV** 框架，使得打包后的体积很小。Quick非常适合对各类主流框架短时间内不熟悉或者刚从requirejs过渡的童鞋，可以使用灵活的js代码，不拘束于任何MV**框架语法限制。
 ## 拓展
-Quick项目是本人借鉴之前公司的架构师所搭建的AMD规范的业务框架，并结合自己的经验、理解所搭建而成。目前只实现了静态部分的开发，后续还要加入对异步处理的集体规范，希望可以加入更多比较时髦的技术来完善。欢迎各路大神来pull request或issues。
+Quick项目是本人借鉴之前公司的架构师所搭建的业务框架(AMD规范)，将原来的AMD模块改进成了es6模块。目前只实现了静态部分的开发，后续还要加入对异步处理的集体规范，希望可以加入更多比较时髦的技术来完善。欢迎各路大神来pull request或issues。
 ## Thanks to
 @[yaoazhen](https://github.com/yaoazhen)
