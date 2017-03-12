@@ -6,7 +6,7 @@ $(function() {
     Router({
         '/': () => {
         	$('.view').hide();
-            console.log('index');
+            console.log('inx');
         },
         '/detail': () => {
         	$('.view').hide();

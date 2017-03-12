@@ -4,7 +4,6 @@ class BaseModel {
         this.init(param);
     }
     init(param) {
-        this.model = param;
     }
     toString() {
         return this.model;
