@@ -137,8 +137,8 @@ export { PageController };
 import { PageModel } from '../model/pageModel';
 import { PageView } from '../view/pageView';
 import $ from 'jquery';
-require('./detail.scss');
-var tpl = require('./detail.html');
+require('./page.scss');
+var tpl = require('./page.html');
 class PageController {
     constructor() {
         this.shut();
