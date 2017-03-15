@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "node server.js",
     "build": "node server.js",
-    "pro": "node build/index.js"
+    "pro": "node build/index.js",
+    "module": "node server.js"
   },
   "keywords": [],
   "author": "",

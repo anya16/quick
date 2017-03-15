@@ -9,12 +9,15 @@ var path = require('path');
 var shell = require('shelljs');
 var _ENV = process.env.NODE_ENV = require('./build').NODE_ENV;
 
+
 /**
  * dev:开发环境  build:编译环境
  * @type {any}
  */
-var DEV_MODE = require('./config/config.js')[_ENV];
-
+var DEV_MODE = '';
+if(_ENV == 'dev' || _ENV == 'build'){
+    DEV_MODE = require('./config/config.js')[_ENV];
+}
 /**
  * webpack基本配置
  */
@@ -85,4 +88,9 @@ if (_ENV === 'dev') {
             'Opening index.html over file:// won\'t work.\n';
         console.log(msg);
     });
+} else if(_ENV == 'module') {
+    console.log('module');
+    var arg = require('./build')['NODE_ARG'];
+    var pageBuild = require('./build')['NODE_PAGE_BUILD'];
+    pageBuild(arg);
 }
