@@ -3,8 +3,7 @@ class BaseModel {
         this.model = {};
         this.init(param);
     }
-    init(param) {
-    }
+    init(param) {}
     toString() {
         return this.model;
     }
