@@ -89,7 +89,6 @@ if (_ENV === 'dev') {
         console.log(msg);
     });
 } else if(_ENV == 'module') {
-    console.log('module');
     var arg = require('./build')['NODE_ARG'];
     var pageBuild = require('./build')['NODE_PAGE_BUILD'];
     pageBuild(arg);
