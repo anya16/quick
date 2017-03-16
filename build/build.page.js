@@ -19,7 +19,7 @@ var buildPage = function (argv) {
                 shell.touch(path.resolve(__dirname, '../src/' + pageName + '/' + pageName + '.html'));
                 shell.touch(path.resolve(__dirname, '../src/model/' + pageName + 'Model.js'));
                 shell.touch(path.resolve(__dirname, '../src/view/' + pageName + 'View.js'));
-                console.log('the {' + pageName +'} page is built');
+                console.log('the {' + pageName + '} page is built');
             }
         });
         console.log('complete the building page!');

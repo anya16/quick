@@ -7,7 +7,7 @@
 # Quick
 HTML5 scaffold for web,no react,no angular,no vue.
 
-## 起步
+## Starting
 
 ### clone
 ```bash
@@ -27,13 +27,13 @@ npm run dev
 npm run build
 ```
 
-## 特点
+## Feature
 - just use Js and Jquery achieved MVC without Angular,React or Vue
 - support ES6 and other version ECMAScript.
 - make a SPA with underscore and director.
 - building with webpack and service with express.
 
-## 目录
+## Modules
 + build ------ 存放npm指令配置文件
 + config ------ 存放webpack配置文件
 + public ------ 存放静态资源
@@ -41,29 +41,45 @@ npm run build
 + server.js ------ 构建入口
 + index.html ------ 入口文件
 + src/ ------ 业务逻辑
-   * page/ ------ 单个页面
-      * index,js ------ 控制器  
-      * page.scss ------ 样式文件
-      * page.html ------ 模板文件
+   * page1/ ------ 自定义页面page1
+      * index,js ------ 主逻辑  
+      * page1.scss ------ 样式文件
+      * page1.html ------ 模板文件
+   * page2/ ------ 自定义页面page2
+      * index,js ------ 主逻辑  
+      * page2.scss ------ 样式文件
+      * page2.html ------ 模板文件
    * model/ ------ 模型目录 
       * baseModel.js ------ 模型基类
-      * pageModel.js ------ 模型子类
+      * page1Model.js ------ 模型子类
+      * page2Model.js ------ 模型子类
    * view/ ------ 视图目录
       * baseView.js ------ 视图基类
-      * pageView.js ------ 视图子类
+      * page1View.js ------ 视图子类
+      * page2View.js ------ 视图子类
    * app.js ------ 路由控制
    * main.scss ------ 样式入口
 
-## 使用
-### 1.页面开发
-#### 建立模型 
+## Usage
+### 1.模块解读
+#### 自定义页面
+所有的自定义页面都将包含model，view，controller三部分。view与model部分都将存放在`view/`与`model/`目录，controller部分将存在在`page[name]/`目录
+ + view 
+   + pageView
+ + model
+   + pageModel
+ + page(controller)
+   + index.js
+   + page.html
+   + page.scss
+
+#### 模型
+
+所有的PageModel(业务)均继承自基类`BaseModel`
 ```bash
-cd src/model
-vi pageModel.js
-```
-所有的业务模型均继承自基类`BaseModel`，并根据后端返回的数据结构在`PageModel`类自定义方法
-```bash
-import { BaseModel } from 'BaseModel';
+// pageModel.js
+
+import { BaseModel } from './baseModel';
 class pageModel extends BaseModel {
     constructor(param) {
         super(param);
@@ -71,13 +87,12 @@ class pageModel extends BaseModel {
 }
 export { pageModel };
 ```
-#### 建立视图
+
+#### 视图
+所有的PageView均继承自基类`BaseView`
 ```bash
-cd src/view
-vi pageView.js
-```
-所有的业务视图均继承自基类`BaseView`,并根据相应控制器传入的参数执行渲染方法
-```bash
+//pageView.js
+
 import _ from 'underscore';
 import $ from 'jquery';
 import { BaseView } from './baseView';
@@ -92,72 +107,14 @@ class PageView extends BaseView {
 }
 export { PageView };
 ```
-#### 建立业务逻辑
-```bash
-cd src
-mkdir page
-vi index.js page.scss page.html
-```
-##### 控制器 indexjs
-引入相应的`PageModel`类与`PageView`类以及jquery
-> jquery是项目主要依赖的工具库，所以很多地方都需要引入
+#### 控制
 
+每一张新增的自定义页面(业务)的index.js，page.scss，page.html文件都将整体作为controller部分，`index.js`将作为页面主逻辑，负责把页面相应的`model`部分与`view`部分进行融合<br><br>
+模板渲染
+> page.html并不是真正的html文件，而是[undescore](http://underscorejs.org/)的模板引擎所需要的基础文件
 ```bash
-import { PageModel } from '../model/pageModel';
-import { PageView } from '../view/pageView';
-import $ from 'jquery';
-```
-引入相应的page.scss
-```bash
-require('./page.scss');
-```
-引入相应的page.html，做模板渲染的基础文件
-```bash
-var tpl = require('./page.html');
-```
-具体控制器`PageController`类的实现，将`PageModel`实例化后的输出结果在`PageView`的实例化中执行，进而渲染页面
-```bash
-class PageController {
-    constructor() {
-        this.shut();
-        let param = {};
-        let result = new PageModel().toString();
-        param.template = tpl;
-        param.model = result;
-        let pageView= new PageView(param);
-    }
-    shut() {
-        $('view').hide();
-    }
-};
-export { PageController };
-```
-控制器index.js主要代码概览
-```bash
-import { PageModel } from '../model/pageModel';
-import { PageView } from '../view/pageView';
-import $ from 'jquery';
-require('./page.scss');
-var tpl = require('./page.html');
-class PageController {
-    constructor() {
-        this.shut();
-        let param = {};
-        let result = new PageModel().toString();
-        param.template = tpl;
-        param.model = result;
-        let pageView= new PageView(param);
-    }
-    shut() {
-        $('view').hide();
-    }
-};
-export { PageController };
-```
-##### 模板文件 page.html
-> page.html并不是真正的html文件，而是[undescore](http://underscorejs.org/)的模板引擎所需要的基础文件，代码里含有`<%%>`等标记符可以进行一定的迭代运算
+//page.html
 
-```bash
 <div class="page">
     <ul>
         <% _.each(body,function(e,i){%>
@@ -170,6 +127,47 @@ export { PageController };
     </ul>
 </div>
 ```
+在index.js中将获取的模板文件`page.html`存入变量`tpl`
+```bash
+var tpl = require('./page.html'); 
+```
+在index.js的`PageController`类的构造函数中进行`model`与`view`的融合
+```bash
+let result = new PageModel().toString();  //通过PageModel的toString方法获取自定义页面page的模型，存入result
+```
+在index.js的`PageController`类的构造函数中将模板文件与模型传入视图的实例化中进行渲染
+```bash
+let param = {};
+param.template = tpl;              //将模板文件存入新建对象param的template属性当中
+param.model = result;              //将获取的page的模型存入新建对象param的model属性当中
+let pageView= new PageView(param); //将page相对应的PageView类进行实例化，并传入param进行渲染
+```
+完整的index.js文件
+```bash
+//index.js
+import $ from jquery';                             //jquey作为主要工具库，很多地方都有可能需要引入
+import { PageModel } from '../model/pageModel';    //引入相应的model
+import { PageView } from '../view/pageView';       //引入相应的view
+require('./page.scss');                            //引入相应的page.scss
+var tpl = require('./page.html');                  //引入相应的page.html，做模板渲染的基础文件
+class PageController {
+    constructor() {
+        this.shut();
+        let param = {};
+        let result = new PageModel().toString();
+        param.template = tpl;
+        param.model = result;
+        let pageView= new PageView(param);
+    }
+    shut() {
+        $('view').hide();
+    }
+};
+export { PageController };
+```
+
+`PageModel`用来获取page的模型数据，`PageView`用来生成html页面(需要数据才能生成动态页面)，页面主逻辑`index.js`的`PageController`则作为桥梁，负责将`PageModel`拿到的数据传入`PageView`进行渲染，生成最终的动态网页
+
 ### 2.配置路由
 打开src/app.js文件
 ```bash
@@ -205,9 +203,10 @@ $(function() {
     }).init('/');
 });
 ```
-## 关于
-Quick是一个轻量级的业务层次的MVC单页面应用框架，遵循ES6的模块规范(在浏览器端实质还是会解析成UMD规范)，不借助任何MV** 框架，使得打包后的体积很小。Quick非常适合对各类主流框架短时间内不熟悉或者刚从requirejs过渡的童鞋，可以使用灵活的js代码，不拘束于任何MV**框架语法限制。
-## 拓展
-Quick项目是本人借鉴之前公司的架构师所搭建的业务框架(AMD规范)，将原来的AMD模块改进成了es6模块。目前只实现了静态部分的开发，后续还要加入对异步处理的集体规范，希望可以加入更多比较时髦的技术来完善。欢迎各路大神来pull request或issues。
+## About
+ - Quick是一个轻量级的业务层次的MVC单页面应用框架，由于不借助任何MV**框架，使得打包后的体积很小
+ - Quick非常适合对各类主流框架短时间内不熟悉或者刚从requirejs过渡的童鞋，可以使用灵活的js代码
+## Expand
+Quick项目是本人借鉴之前公司的架构师所搭建的业务框架(AMD规范)，将原来的AMD模块改进成了es6模块。后续还要加入对异步处理的集体规范，希望可以加入更多比较时髦的技术来完善。欢迎各路大神来pull request或issues。
 ## Thanks to
 @[yaoazhen](https://github.com/yaoazhen)
