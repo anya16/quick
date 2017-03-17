@@ -149,7 +149,7 @@ npm run module -- --page mypage
 npm run module -- --page mypage1 mypage2 mypage3
 ```
 
-src目录：新创建的 `mypage**Model.js`、`mypage**View.js` 都将自动添加在 `baseModel.js`、`baseView.js`之后，同时会在 `src/` 下生成 `mypage**` 目录，包含：`index.js`、`mypage**.html`、`mypage**.scss` 三个文件  
+src目录：每创建一张页面 `mypage**`，都将生成 `mypage**Model.js`、`mypage**View.js`，并自动添加在 `baseModel.js`、`baseView.js`之后，同时会在 `src/` 下生成 `mypage**` 目录，包含：`index.js`、`mypage**.html`、`mypage**.scss` 三个文件  
 + src/ ------ 业务逻辑
    * model/ ------ 模型目录 
       * baseModel.js ------ 模型基类
