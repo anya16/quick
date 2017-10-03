@@ -1,8 +1,6 @@
 
 
 [![Build Status](https://travis-ci.org/Ironsub/quick.svg?branch=master)](https://travis-ci.org/Ironsub/quick)
-![node](https://img.shields.io/badge/node->=7.0.0-brightgreen.svg)
-[![GitHub issues](https://img.shields.io/github/issues/Leotw/quick.svg)](https://github.com/Leotw/quick/issues)
 [![GitHub forks](https://img.shields.io/github/forks/Leotw/quick.svg)](https://github.com/Leotw/quick/network)
 # Quick
 HTML5 scaffold for web,no react,no angular,no vue.
@@ -311,7 +309,5 @@ $(function() {
  - 非常适合对各类主流框架短时间内不熟悉或者刚从requirejs过渡的童鞋，可以使用灵活的js代码
  - 使用underscore的模板引擎进行快速渲染，适合开发没有大量数据绑定的项目
  - 项目所依赖的无论是前端类库(可通过bower安装的)还是node包都统一存入 `node_modules` 中，不再使用 `bower install`
-## Expand
-Quick项目是本人借鉴之前公司的架构师所搭建的业务框架(AMD规范)，将原来的AMD模块改进成了es6模块。后续还要加入对异步处理的集体规范，希望可以加入更多比较时髦的技术来完善。欢迎各路大神来pull request或issues。
 ## Thanks to
 @[yaoazhen](https://github.com/yaoazhen)
